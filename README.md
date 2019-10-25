@@ -15,19 +15,21 @@ If something is not clear or you need help - just ask :smile:. Nobody knows ever
 5. Make sure to commit frequently and feel free to stop working on it after 2-4 hours
 6. Provide an overview which points you would improve if you had more time to work on the project
 
+N.B.: Please do not make the repo publicly accessible. Send an archive of your repo to us instead.
+
 Scenario - Product Import via File Upload
 ---------------------------
 
 Story: A new kloeckner US branch needs to be onboarded, for this we got a new feature request from our product owner.
 
-The user should be able to upload a csv to import products into the database. This data should then be shown in a list. 
+The user should be able to upload a csv to import products into the database. This data should then be shown in a list.
 
 The upload should work multiple times and always update the corresponding products.
 Bonus Feature: Products that are not in the CSV get deleted (can be enabled via checkbox)
 
 Lines in the CSV represent steel products.
 
-An example CSV is in the repo. 
+An example CSV is in the repo.
 Here is some help to understand the CSV structure:
 
 PART_NUMBER = identifier for a product
