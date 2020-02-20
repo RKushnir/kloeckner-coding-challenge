@@ -34,6 +34,7 @@ en:
     attributes:
       product_import_form:
         csv_file: CSV File
+        delete_obsolete_products: Delete existing products that are not in the imported file?
   activerecord:
     attributes:
       product:

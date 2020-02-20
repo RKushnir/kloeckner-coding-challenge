@@ -3,10 +3,15 @@ require "csv"
 class ProductImportForm
   include ActiveModel::Model
 
-  attr_accessor :csv_file
+  attr_accessor :csv_file, :delete_obsolete_products
+
+  def initialize
+    self.delete_obsolete_products = false
+  end
 
   def validate(params)
     self.csv_file = params[:csv_file]
+    self.delete_obsolete_products = params[:delete_obsolete_products] == "1"
 
     if csv_file.blank?
       errors.add :base, I18n.t("product_import_form.file_blank")

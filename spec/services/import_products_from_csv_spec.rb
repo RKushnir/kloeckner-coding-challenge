@@ -3,9 +3,9 @@ require "rails_helper"
 RSpec.describe ImportProductsFromCsv, type: :service do
   subject(:service) { described_class.new }
 
-  def run_import
+  def run_import(delete_obsolete_products: false)
     File.open("spec/fixtures/basic_products.csv") do |csv_file|
-      service.call(csv_file)
+      service.call(csv_file, delete_obsolete_products: delete_obsolete_products)
     end
   end
 
@@ -32,7 +32,7 @@ RSpec.describe ImportProductsFromCsv, type: :service do
     Product.create!(part_number: "Obsolete", branch_code: "TUC", part_price_usd_cents: 1)
     Product.create!(part_number: "0121F00548", branch_code: "OLD", part_price_usd_cents: 2)
 
-    run_import
+    run_import(delete_obsolete_products: true)
 
     expect(Product.all).to include(
       an_object_having_attributes(

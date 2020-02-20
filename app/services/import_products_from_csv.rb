@@ -33,7 +33,7 @@ class ImportProductsFromCsv
     end
   end
 
-  def call(csv_file)
+  def call(csv_file, delete_obsolete_products: false)
     prevent_concurrent_imports do
       new_import_version = select_next_import_version
 
@@ -42,7 +42,7 @@ class ImportProductsFromCsv
         persist_product(product_row, new_import_version)
       end
 
-      delete_obsolete_products(new_import_version)
+      do_delete_obsolete_products(new_import_version) if delete_obsolete_products
     end
   end
 
@@ -68,7 +68,7 @@ class ImportProductsFromCsv
     )
   end
 
-  def delete_obsolete_products(current_version)
+  def do_delete_obsolete_products(current_version)
     Product.where("import_version < ?", current_version).delete_all
   end
 end

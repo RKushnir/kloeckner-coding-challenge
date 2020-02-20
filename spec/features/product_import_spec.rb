@@ -18,6 +18,18 @@ RSpec.describe "Product import", type: :feature do
     end
   end
 
+  scenario "deleting obsolete products" do
+    Product.create!(part_number: "Obsolete", branch_code: "TUC", part_price_usd_cents: 5)
+
+    visit "/product_import/new"
+    attach_file "CSV File", "spec/fixtures/basic_products.csv"
+    check "Delete existing products that are not in the imported file?"
+    click_button "Import"
+    expect(page).to have_content(".flash-notice", "Products were successfully imported")
+
+    expect(Product.where(part_number: "Obsolete").exists?).to eq(false)
+  end
+
   scenario "initiating an import while another import is already running" do
     import_service = instance_double(ImportProductsFromCsv)
     allow(ImportProductsFromCsv).to receive(:new).and_return(import_service)

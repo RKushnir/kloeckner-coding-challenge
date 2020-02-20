@@ -9,7 +9,7 @@ class ProductImportsController < ApplicationController
 
     if form.validate(params[:product_import] || {})
       begin
-        ImportProductsFromCsv.new.call(form.csv_file)
+        ImportProductsFromCsv.new.call(form.csv_file, delete_obsolete_products: form.delete_obsolete_products)
 
         flash[:notice] = t("product_imports.create.success")
         redirect_to products_path
