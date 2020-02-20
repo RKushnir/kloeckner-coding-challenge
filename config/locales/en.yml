@@ -47,5 +47,6 @@ en:
     new:
       submit: Import
     create:
+      already_in_progress: Another import process is already running, try again in a minute
       success: Products were successfully imported
       failure: There was an error importing products

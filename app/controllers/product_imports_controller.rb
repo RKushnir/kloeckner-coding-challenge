@@ -8,13 +8,23 @@ class ProductImportsController < ApplicationController
     form = ProductImportForm.new
 
     if form.validate(params.require(:product_import))
-      ImportProductsFromCsv.new.call(form.csv_file)
+      begin
+        ImportProductsFromCsv.new.call(form.csv_file)
 
-      flash[:notice] = t("product_imports.create.success")
-      redirect_to products_path
+        flash[:notice] = t("product_imports.create.success")
+        redirect_to products_path
+      rescue ImportProductsFromCsv::ImportAlreadyInProgress
+        respond_with_error t("product_imports.create.already_in_progress"), form
+      end
     else
-      flash.now[:alert] = t("product_imports.create.failure")
-      render :new, locals: { form: form }
+      respond_with_error t("product_imports.create.failure"), form
     end
+  end
+
+  private
+
+  def respond_with_error(error_message, form)
+    flash.now[:alert] = error_message
+    render :new, locals: { form: form }
   end
 end

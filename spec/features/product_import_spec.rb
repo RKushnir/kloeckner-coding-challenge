@@ -17,4 +17,16 @@ RSpec.describe "Product import", type: :feature do
       expect(page).to have_text("GALV x FAB x 0121F00548 x 16093 x .026 x 29.88 x 17.56")
     end
   end
+
+  scenario "initiating an import while another import is already running" do
+    import_service = instance_double(ImportProductsFromCsv)
+    allow(ImportProductsFromCsv).to receive(:new).and_return(import_service)
+    allow(import_service).to receive(:call).and_raise(ImportProductsFromCsv::ImportAlreadyInProgress)
+
+    visit "/product_import/new"
+    attach_file "CSV File", "spec/fixtures/basic_products.csv"
+    click_button "Import"
+
+    expect(page).to have_content(".flash-alert", "Another import process is already running")
+  end
 end
