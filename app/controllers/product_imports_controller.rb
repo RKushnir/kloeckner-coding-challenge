@@ -7,6 +7,8 @@ class ProductImportsController < ApplicationController
     @product_import_form = ProductImportForm.new
 
     if @product_import_form.validate(params.require(:product_import))
+      ImportProductsFromCsv.new.call(@product_import_form.csv_file)
+
       flash[:notice] = t("product_imports.create.success")
       redirect_to root_path
     else
