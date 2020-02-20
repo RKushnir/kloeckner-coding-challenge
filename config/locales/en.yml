@@ -45,11 +45,12 @@ en:
 
   product_imports:
     new:
+      errors: Errors
       submit: Import
     create:
       already_in_progress: Another import process is already running, try again in a minute
-      success: Products were successfully imported
       failure: There was an error importing products
+      success: Products were successfully imported
   product_import_form:
     branch_id_blank: Branch id cannot be blank
     csv_error_prefix: "Line %{line_number}: "
