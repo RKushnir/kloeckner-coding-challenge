@@ -7,7 +7,7 @@ class ProductImportsController < ApplicationController
   def create
     form = ProductImportForm.new
 
-    if form.validate(params.require(:product_import))
+    if form.validate(params[:product_import] || {})
       begin
         ImportProductsFromCsv.new.call(form.csv_file)
 

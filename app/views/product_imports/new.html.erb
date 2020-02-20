@@ -9,3 +9,11 @@
     <%= f.submit t("product_imports.new.submit") %>
   </p>
 <% end %>
+
+<% if form.errors.any? %>
+  <ul class="import-errors">
+    <% form.errors.full_messages.each do |error| %>
+    <li><%= error %></li>
+    <% end %>
+  </ul>
+<% end %>

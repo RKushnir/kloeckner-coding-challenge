@@ -50,3 +50,10 @@ en:
       already_in_progress: Another import process is already running, try again in a minute
       success: Products were successfully imported
       failure: There was an error importing products
+  product_import_form:
+    branch_id_blank: Branch id cannot be blank
+    csv_error_prefix: "Line %{line_number}: "
+    file_blank: Please, select a CSV file to upload
+    part_number_blank: Part number cannot be blank
+    part_price_blank: Part price cannot be blank
+    part_price_not_a_number: Part price is not a number

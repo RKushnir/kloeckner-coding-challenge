@@ -29,4 +29,22 @@ RSpec.describe "Product import", type: :feature do
 
     expect(page).to have_content(".flash-alert", "Another import process is already running")
   end
+
+  scenario "submitting an empty form" do
+    visit "/product_import/new"
+    click_button "Import"
+    expect(page).to have_content(".flash-alert", "There was an error importing products")
+
+    expect(page).to have_text("Please, select a CSV file to upload")
+  end
+
+  scenario "importing a CSV file with some invalid entries" do
+    visit "/product_import/new"
+    attach_file "CSV File", "spec/fixtures/products_with_some_invalid.csv"
+    click_button "Import"
+    expect(page).to have_content(".flash-alert", "There was an error importing products")
+
+    expect(page).to have_text("Line 3: Part number cannot be blank")
+    expect(page).to have_text("Line 4: Part price is not a number")
+  end
 end
