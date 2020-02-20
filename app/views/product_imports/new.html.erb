@@ -1,7 +1,6 @@
 <h1>Import Products</h1>
 
-<%= form_for @product_import_form,
-             as: :product_import, url: product_import_path do |f| %>
+<%= form_for form, as: :product_import, url: product_import_path do |f| %>
   <p>
     <%= f.label :csv_file %>
     <%= f.file_field :csv_file %>
