@@ -5,6 +5,7 @@ RSpec.describe "Product import", type: :feature do
     visit "/product_import/new"
     attach_file "CSV File", "spec/fixtures/basic_products.csv"
     click_button "Import"
+    expect(page).to have_content(".flash-notice", "Products were successfully imported")
 
     # within("tr", text: "0121F00548") do
     #   expect(page).to have_text("TUC")

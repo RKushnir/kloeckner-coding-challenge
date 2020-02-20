@@ -37,3 +37,6 @@ en:
   product_imports:
     new:
       submit: Import
+    create:
+      success: Products were successfully imported
+      failure: There was an error importing products
