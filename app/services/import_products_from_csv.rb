@@ -12,6 +12,8 @@ class ImportProductsFromCsv
     end
   end
 
+  private
+
   def parse_price(value)
     (Float(value) * 100).to_i
   end
