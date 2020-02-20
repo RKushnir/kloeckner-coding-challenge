@@ -34,6 +34,15 @@ en:
     attributes:
       product_import_form:
         csv_file: CSV File
+  activerecord:
+    attributes:
+      product:
+        id: ID
+        part_number: Part Number
+        branch_code: Branch ID
+        part_price_usd: Part Price (USD)
+        short_description: Short Description
+
   product_imports:
     new:
       submit: Import

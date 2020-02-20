@@ -10,7 +10,7 @@ class ProductImportsController < ApplicationController
       ImportProductsFromCsv.new.call(@product_import_form.csv_file)
 
       flash[:notice] = t("product_imports.create.success")
-      redirect_to root_path
+      redirect_to products_path
     else
       flash.now[:alert] = t("product_imports.create.failure")
       render :new

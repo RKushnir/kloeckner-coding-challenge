@@ -1,0 +1,21 @@
+<h1>Products</h1>
+
+<table>
+  <tr>
+    <th><%= Product.human_attribute_name(:id) %></th>
+    <th><%= Product.human_attribute_name(:part_number) %></th>
+    <th><%= Product.human_attribute_name(:branch_code) %></th>
+    <th><%= Product.human_attribute_name(:part_price_usd) %></th>
+    <th><%= Product.human_attribute_name(:short_description) %></th>
+  </tr>
+
+  <% products.each do |product| %>
+    <tr>
+      <td><%= product.id %></td>
+      <td><%= product.part_number %></td>
+      <td><%= product.branch_code %></td>
+      <td><%= product.part_price_usd %></td>
+      <td><%= product.short_description %></td>
+    </tr>
+  <% end %>
+</table>
