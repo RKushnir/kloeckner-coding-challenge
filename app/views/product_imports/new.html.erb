@@ -1,0 +1,11 @@
+<h1>Import Products</h1>
+
+<%= form_for @product_import_form, url: product_import_path do |f| %>
+  <p>
+    <%= f.label :csv_file %>
+    <%= f.file_field :csv_file %>
+  </p>
+  <p>
+    <%= f.submit t("product_imports.new.submit") %>
+  </p>
+<% end %>

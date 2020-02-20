@@ -1,3 +1,4 @@
 Rails.application.routes.draw do
-  root to: -> (env) { [200, { "Content-Type" => "text/html" }, ["Hello"]] }
+  root to: "product_imports#new"
+  resource :product_import, only: %i[new create]
 end
